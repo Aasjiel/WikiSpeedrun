@@ -3,6 +3,7 @@ var start;
 var end;
 var delta;
 var endValue;
+let url;
 
 document.getElementById('startBtn').addEventListener('click', function(){timer();getLinks()});
 
@@ -38,3 +39,8 @@ function getLinks(){
     console.log("Error: Endlink is null")
   }
 }
+
+chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+  url = tabs[0].url;
+  // use `url` here inside the callback because it's asynchronous!
+});
